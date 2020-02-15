@@ -1,0 +1,40 @@
+!curl https://raw.githubusercontent.com/MicrosoftLearning/intropython/master/elements1_20.txt -o elements1_20.txt    
+file = open('elements1_20.txt','r')
+element_names = file.readline().strip("\n ").lower()
+ele_addfile = []
+while element_names:
+    element_names = file.readline().strip("\n").lower()
+    ele_addfile.append(element_names)
+print("List any 5 of the first 20 elements in the Periodic table\n")
+response_list = []
+def get_names():
+    while len(response_list) < 5:
+        inner = input("Enter any Elemet Name: ").lower()
+        if inner not in response_list:
+            if inner == "":
+                pass
+            else:
+                response_list.append(inner)
+        elif len(inner) < 1:
+            pass
+        elif inner in response_list:
+            print()
+            print(inner.upper(),"Already Enterred\t\t\t\t<-- Duplicate Not Allowed")
+            pass
+        else:
+            pass
+    return response_list
+get_names()
+correct = []
+wrong = []
+correctscore = 0 
+for backlist in response_list:
+    if backlist in ele_addfile:
+        correctscore += 1
+        correct.append(backlist)
+    elif backlist not in ele_addfile:
+        wrong.append(backlist)
+print("\n",response_list,"\n")
+print(correctscore*20,"% Score")
+print("Found",correct)
+print("Not Found",wrong)
